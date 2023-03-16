@@ -78,7 +78,7 @@ async def parse_article(url):
     source = source.split('.')[1]
     return {"source": source, "title": title, "author": author, "text":text}
 
-@app.post("/parse/extension")
+@app.post('/parse/extension')
 async def parse_article(url):
     data = Article(url)
     data.download()
