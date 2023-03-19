@@ -37,7 +37,7 @@ tldextract==3.4.0
 tqdm==4.65.0
 typing_extensions==4.5.0
 urllib3==1.26.14
-uvicorn==0.21.0 @/Users/apple/Library/Python/3.8/lib/python/site-packages
+uvicorn==0.21.0 
 uvloop==0.17.0
 watchfiles==0.18.1
 websockets==10.4
