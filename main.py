@@ -4,8 +4,8 @@ from newspaper import Article
 import re
 from nltk.corpus import stopwords
 from urllib.parse import urlparse
-import uvicorn
-import os
+# import uvicorn
+# import os
 
 stop = set(stopwords.words('english'))
 alphabets= "([A-Za-z])"
@@ -95,5 +95,5 @@ async def parse_article(url):
 
 
 
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=os.getenv("PORT", default=5000), log_level="info")
+# if __name__ == "__main__":
+#     uvicorn.run("main:app", host="0.0.0.0", port=os.getenv("PORT", default=5000), log_level="info")
