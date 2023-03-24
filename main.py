@@ -2,9 +2,11 @@ from fastapi import FastAPI
 from fastapi.params import Body
 from newspaper import Article
 import re
+import nltk
 from nltk.corpus import stopwords
 from urllib.parse import urlparse
 
+nltk.download('stopwords')
 stop = set(stopwords.words('english'))
 alphabets= "([A-Za-z])"
 prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
