@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.params import Body
+from fastapi.middleware.cors import CORSMiddleware
 from newspaper import Article
 import re
 import nltk
@@ -60,6 +61,20 @@ def split_into_sentences(text):
     return sentences
 
 app = FastAPI()
+origins = [
+    "https://www.brainwashd.me",
+    "http://localhost",
+    "http://localhost:3000",
+    "http://localhost:3001",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
