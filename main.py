@@ -82,7 +82,7 @@ def read_root():
     return {"Hello": "World !!"}
 
 @app.post("/parse/url")
-async def parse_article(url):
+async def parse_article(url: str = Body()):
     data = Article(url)
     data.download()
     data.parse()
@@ -96,7 +96,7 @@ async def parse_article(url):
     return {"source": source, "title": title, "author": author, "text":text}
 
 @app.post('/parse/extension')
-async def parse_article(url):
+async def parse_article(url: str = Body()):
     data = Article(url)
     data.download()
     data.parse()
