@@ -90,7 +90,8 @@ async def parse_article(url: str):
     author = data.authors
     text = data.text
     text = remove_html(text)
-    # text = clean_text(text)
+    text = text.replace("\n"," ")
+    text = text.replace("\""," ")
     source = urlparse(url).netloc
     source = source.split('.')[1]
     return {"source": source, "title": title, "author": author, "text":text}
