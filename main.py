@@ -90,8 +90,8 @@ async def parse_article(url: str):
     author = data.authors
     text = data.text
     text = remove_html(text)
-    text = text.replace("\n"," ")
-    text = text.replace("\""," ")
+    text = text.replace("\n","")
+    text = text.replace("\"","")
     source = urlparse(url).netloc
     source = source.split('.')[1]
     return {"source": source, "title": title, "author": author, "text":text}
@@ -106,6 +106,7 @@ async def parse_article(url: str):
     text = data.text
     text = remove_html(text)
     text = lower_case(text)
-    text = split_into_sentences(text)
+    text = text.replace("\n","")
+    text = text.replace("\"","")
     return {"title": title, "author": author, "text":text}
  
