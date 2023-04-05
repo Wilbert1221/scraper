@@ -7,7 +7,6 @@ import nltk
 from nltk.corpus import stopwords
 from urllib.parse import urlparse
 import snscrape.modules.twitter as twitterScraper
-import json
 
 nltk.download('stopwords')
 stop = set(stopwords.words('english'))
@@ -115,6 +114,8 @@ async def parse_article(url: str):
 
 @app.post('/parse/tweet')
 async def parse_article(id: str):
-    scraper = twitterScraper.TwitterTweetScraper(id)
-    data = scraper.get_items()
-    return {data}
+    for i, item in enumerate(twitterScraper.TwitterTweetScraper(id).get_items()):
+        if i>1:
+            break
+        tweet = {"author": item.user.displayname, "content": item.renderedContent, "profile": item.user.profileImageUrl, "verified": item.user.verified}
+    return tweet
