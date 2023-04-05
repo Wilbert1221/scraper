@@ -114,8 +114,9 @@ async def parse_article(url: str):
 
 @app.post('/parse/tweet')
 async def parse_article(id: str):
+    # data = twitterScraper.TwitterTweetScraper(id).get_items()
     for i, item in enumerate(twitterScraper.TwitterTweetScraper(id).get_items()):
         if i>1:
             break
-        tweet = {"author": item.user.displayname, "content": item.renderedContent, "profile": item.user.profileImageUrl, "verified": item.user.verified}
+        tweet = {"author": item.user.displayname, "content": item.renderedContent, "profile": item.user.profileImageUrl, "verified": item.user.verified, "username": item.user.username}
     return tweet
