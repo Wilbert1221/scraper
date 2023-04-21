@@ -7,10 +7,6 @@ import nltk
 from nltk.corpus import stopwords
 from urllib.parse import urlparse
 import snscrape.modules.twitter as twitterScraper
-import facebook
-
-token = 'EABZBBAKdoae8BAHLZCmf2JbfxmR2QdFtW4HQFjG1YZBluoouhHSDECVU7KPh1RBZC6q0HWnD0jchQEDZCFGbMk957gATOLjgs9nlr17ZAfLE53dUy2qZCbQoqu6mmvLTGWZAL8KvvqL0hKoJe2HnqqmtLdxRkUrVy6tkr8DxmiAIzTDr0cIZBjslf'
-graph = facebook.GraphAPI(access_token=token, version="2.12")
 
 nltk.download('stopwords')
 stop = set(stopwords.words('english'))
@@ -126,8 +122,8 @@ async def parse_article(id: str):
         tweet = {"author": item.user.displayname, "content": item.renderedContent, "profile": item.user.profileImageUrl, "verified": item.user.verified, "username": item.user.username}
     return tweet
 
-@app.post('/parse/facebook')
-async def parse_article(id: str):
-    post = graph.get_object(id=id, fields='description, message, name, target, caption, admin_creator')
-    print(post['description'])
-    return post
+# @app.post('/parse/facebook')
+# async def parse_article(id: str):
+#     post = graph.get_object(id=id, fields='description, message, name, target, caption, admin_creator')
+#     print(post['description'])
+#     return post
