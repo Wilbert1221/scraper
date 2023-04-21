@@ -108,8 +108,8 @@ async def parse_article(url: str):
     text = data.text
     text = remove_html(text)
     # text = lower_case(text)
-    # text = text.replace("\n","")
-    # text = text.replace("\"","")
+    text = text.replace("\n","")
+    text = text.replace("\"","")
     text = text.split('.')
     return {"title": title, "author": author, "text":text}
  
