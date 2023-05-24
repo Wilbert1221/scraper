@@ -24,7 +24,6 @@ def remove_html(text):
     return html_pattern.sub(r'', text)
 
 def clean_text(text):
-    text= str(text).lower()
     text = " ".join([word.lower() for word in text.split() if word.lower() not in stop])
     text = " ".join([i for i in text.split() if len(i) > 2])
     return text
@@ -62,9 +61,32 @@ def split_into_sentences(text):
     sentences = [s.strip() for s in sentences]
     return sentences
 
+def string_magic(text):
+    text = text.replace("\n","")
+    text = text.replace("\"","")
+    text = text.replace("CNN —", "")
+    text = text.split('.')
+    return text
+    
+def is_open_quote(s):
+    stack = []
+    for c in s:
+        if c in ["'", '"', "`"]:
+            if stack and stack[-1] == c:
+                # this single-quote is close character
+                stack.pop()
+            else:
+                # a new quote started
+                stack.append(c)
+        else:
+            # ignore it
+            pass
+
+    return len(stack)
+
 app = FastAPI()
 origins = [
-    "https://www.brainwashd.me",
+    "https://app.brainwashd.me",
     "http://localhost",
     "http://localhost:3000",
     "http://localhost:3001",
@@ -106,11 +128,7 @@ async def parse_article(url: str):
     title = data.title
     author = data.authors
     text = data.text
-    text = remove_html(text)
-    # text = lower_case(text)
-    text = text.replace("\n","")
-    text = text.replace("\"","")
-    text = text.split('.')
+    text = string_magic(text)
     return {"title": title, "author": author, "text":text}
  
 
