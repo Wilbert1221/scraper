@@ -86,7 +86,7 @@ def is_open_quote(s):
 
 app = FastAPI()
 origins = [
-    "https://app.brainwashd.me",
+    "https://www.brainwashd.me",
     "http://localhost",
     "http://localhost:3000",
     "http://localhost:3001",
